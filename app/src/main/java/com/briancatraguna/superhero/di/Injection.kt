@@ -15,11 +15,11 @@ object Injection {
 
     private fun provideRepository(): ISearchHeroRepository {
         val searchHeroDataSource = provideDataSource()
-        return SearchHeroRepository.getInstance(searchHeroDataSource)
+        return SearchHeroRepository()
     }
 
     private fun provideDataSource(): ISearchHeroDataSource {
-        return SearchHeroDataSource.getInstance()
+        return SearchHeroDataSource()
 
     }
 }

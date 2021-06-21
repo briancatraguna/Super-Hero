@@ -3,19 +3,17 @@ package com.briancatraguna.superhero.domain
 import androidx.lifecycle.LiveData
 import com.briancatraguna.superhero.data.ISearchHeroDataSource
 import com.briancatraguna.superhero.data.SearchHeroResponse
+import com.briancatraguna.superhero.di.DaggerSearchHeroDataSourceComponent
+import javax.inject.Inject
 
-class SearchHeroRepository(private val searchHeroDataSource: ISearchHeroDataSource):ISearchHeroRepository {
+class SearchHeroRepository:ISearchHeroRepository {
 
-    companion object{
-        @Volatile
-        private var instance: SearchHeroRepository? = null
+    @Inject
+    lateinit var searchHeroDataSource: ISearchHeroDataSource
 
-        fun getInstance(searchHeroDataSource: ISearchHeroDataSource): SearchHeroRepository =
-            instance ?: synchronized(this){
-                instance ?: SearchHeroRepository(searchHeroDataSource).apply {
-                    instance = this
-                }
-            }
+    constructor(){
+        val dataSourceComponent = DaggerSearchHeroDataSourceComponent.create()
+        dataSourceComponent.inject(this)
     }
 
     override fun getHeroes(search: String): LiveData<SearchHeroResponse> {

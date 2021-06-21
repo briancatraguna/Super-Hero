@@ -6,6 +6,8 @@ import com.briancatraguna.superhero.data.api.SearchHeroApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
 class SearchHeroDataSource: ISearchHeroDataSource {
 
@@ -13,16 +15,9 @@ class SearchHeroDataSource: ISearchHeroDataSource {
     private val _isLoading = MutableLiveData<Boolean>()
     private val _isConnected = MutableLiveData<Boolean>()
 
-    companion object {
-        @Volatile
-        private var instance: SearchHeroDataSource? = null
+    @Inject
+    constructor(){
 
-        fun getInstance(): SearchHeroDataSource =
-            instance ?: synchronized(this){
-                instance ?: SearchHeroDataSource().apply {
-                    instance = this
-                }
-            }
     }
 
     override fun getHeroes(search: String): LiveData<SearchHeroResponse> {
