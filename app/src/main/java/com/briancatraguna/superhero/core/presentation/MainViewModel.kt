@@ -1,11 +1,11 @@
-package com.briancatraguna.superhero.presentation
+package com.briancatraguna.superhero.core.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.briancatraguna.superhero.data.SearchHeroResponse
-import com.briancatraguna.superhero.domain.SearchHeroUseCase
+import com.briancatraguna.superhero.core.data.SearchHeroResponse
+import com.briancatraguna.superhero.core.domain.SearchHeroUseCase
 
-class SearchHeroesViewModel(private val searchHeroUseCase: SearchHeroUseCase):ViewModel() {
+class MainViewModel(private val searchHeroUseCase: SearchHeroUseCase): ViewModel() {
 
     fun getHeroes(search: String): LiveData<SearchHeroResponse>{
         return searchHeroUseCase.getHeroes(search)
@@ -18,5 +18,4 @@ class SearchHeroesViewModel(private val searchHeroUseCase: SearchHeroUseCase):Vi
     fun getLoadingStatus(): LiveData<Boolean>{
         return searchHeroUseCase.getLoadingStatus()
     }
-
 }

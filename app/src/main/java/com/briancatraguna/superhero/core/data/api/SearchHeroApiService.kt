@@ -1,6 +1,6 @@
-package com.briancatraguna.superhero.data.api
+package com.briancatraguna.superhero.core.data.api
 
-import com.briancatraguna.superhero.data.SearchHeroResponse
+import com.briancatraguna.superhero.core.data.SearchHeroResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

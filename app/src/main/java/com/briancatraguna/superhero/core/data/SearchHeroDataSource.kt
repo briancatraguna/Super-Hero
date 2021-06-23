@@ -1,23 +1,24 @@
-package com.briancatraguna.superhero.data
+package com.briancatraguna.superhero.core.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.briancatraguna.superhero.data.api.SearchHeroApiConfig
+import com.briancatraguna.superhero.core.data.api.SearchHeroApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
-import javax.inject.Singleton
 
-class SearchHeroDataSource: ISearchHeroDataSource {
+class SearchHeroDataSource:ISearchHeroDataSource {
 
     private val _heroes = MutableLiveData<SearchHeroResponse>()
     private val _isLoading = MutableLiveData<Boolean>()
     private val _isConnected = MutableLiveData<Boolean>()
 
-    @Inject
-    constructor(){
+    lateinit var apiService: SearchHeroApiService
 
+    @Inject
+    constructor(apiService: SearchHeroApiService){
+        this.apiService = apiService
     }
 
     override fun getHeroes(search: String): LiveData<SearchHeroResponse> {
@@ -39,7 +40,7 @@ class SearchHeroDataSource: ISearchHeroDataSource {
     private fun runQuery(search: String){
         _isConnected.value = true
         _isLoading.value = true
-        val client = SearchHeroApiConfig.getApiService().getHeroes(search)
+        val client = apiService.getHeroes(search)
         client.enqueue(object : Callback<SearchHeroResponse>{
             override fun onResponse(
                 call: Call<SearchHeroResponse>,
