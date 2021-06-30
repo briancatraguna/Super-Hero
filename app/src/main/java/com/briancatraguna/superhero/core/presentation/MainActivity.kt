@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this,factory)[MainViewModel::class.java]
 
         viewModel.getHeroes("spider-man").observe(this,{results->
-            binding.tvTest.text = results.response
+
         })
 
     }
