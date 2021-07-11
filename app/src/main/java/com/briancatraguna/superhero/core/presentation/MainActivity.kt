@@ -30,10 +30,15 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = GridLayoutManager(applicationContext,2)
 
-        viewModel.getHeroes("spider-man").observe(this,{results->
-            binding.textView.text = results?.results?.get(0)?.name
-            val adapter = GridSuperHeroAdapter(results.results as List<ResultsItem>)
-            recyclerView.adapter = adapter
+        viewModel.getHeroes("prikitiew").observe(this,{results->
+            println(results.response)
+            if (results.response != "error"){
+                binding.textView.text = results?.results?.get(0)?.name
+                val adapter = GridSuperHeroAdapter(results.results as List<ResultsItem>)
+                recyclerView.adapter = adapter
+            } else {
+                binding.textView.text = "NO RESULT FOUND"
+            }
         })
 
         viewModel.getLoadingStatus().observe(this,{loading->

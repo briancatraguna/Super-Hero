@@ -43,7 +43,6 @@ class SearchHeroDataSource:ISearchHeroDataSource {
     }
 
     private fun runQuery(search: String){
-
         apiService.getHeroes(search)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -58,7 +57,15 @@ class SearchHeroDataSource:ISearchHeroDataSource {
             }
 
             override fun onNext(t: SearchHeroResponse) {
-                _heroes.value = t
+                if (t.response != "error"){
+                    _heroes.value = t
+                } else {
+                    _heroes.value = SearchHeroResponse(
+                        resultsFor = null,
+                        response = "error",
+                        results = null
+                    )
+                }
             }
 
             override fun onError(e: Throwable) {
