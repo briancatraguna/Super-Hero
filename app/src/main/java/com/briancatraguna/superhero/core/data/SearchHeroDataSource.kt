@@ -33,16 +33,17 @@ class SearchHeroDataSource:ISearchHeroDataSource {
     }
 
     override fun getConnectionStatus(): LiveData<Boolean> {
-        val isLoading: LiveData<Boolean> = _isLoading
-        return isLoading
-    }
-
-    override fun getLoadingStatus(): LiveData<Boolean> {
         val isConnected: LiveData<Boolean> = _isConnected
         return isConnected
     }
 
+    override fun getLoadingStatus(): LiveData<Boolean> {
+        val isLoading: LiveData<Boolean> = _isLoading
+        return isLoading
+    }
+
     private fun runQuery(search: String){
+
         apiService.getHeroes(search)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -52,25 +53,21 @@ class SearchHeroDataSource:ISearchHeroDataSource {
     private fun getHeroesListObserverRx(): Observer<SearchHeroResponse>{
         return object : Observer<SearchHeroResponse> {
             override fun onSubscribe(d: Disposable) {
-                _isConnected.postValue(true)
-                _isLoading.postValue(true)
-                println("onsubscribe")
+                _isConnected.value = true
+                _isLoading.value = true
             }
 
             override fun onNext(t: SearchHeroResponse) {
-                _heroes.postValue(t)
-                _isLoading.postValue(false)
-                println("onnext")
+                _heroes.value = t
             }
 
             override fun onError(e: Throwable) {
-                _isConnected.postValue(false)
-                _isLoading.postValue(false)
+                _isConnected.value = false
+                _isLoading.value = false
             }
 
             override fun onComplete() {
-                _isLoading.postValue(false)
-                println("oncomplete")
+                _isLoading.value = false
             }
 
         }

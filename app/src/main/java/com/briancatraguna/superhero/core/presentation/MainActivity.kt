@@ -33,10 +33,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.getLoadingStatus().observe(this,{loading->
             if (loading){
                 binding.progressBar.visibility = View.VISIBLE
-                println("STILL LOADING")
             } else {
                 binding.progressBar.visibility = View.GONE
-                println("FINISHED LOADING")
             }
         })
 
