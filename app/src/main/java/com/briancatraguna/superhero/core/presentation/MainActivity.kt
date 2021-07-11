@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.briancatraguna.superhero.MyApplication
+import com.briancatraguna.superhero.core.domain.ResultsItem
 import com.briancatraguna.superhero.databinding.ActivityMainBinding
 
 import com.briancatraguna.superhero.core.domain.SearchHeroRepository
@@ -25,9 +27,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this,factory)[MainViewModel::class.java]
+        val recyclerView = binding.recyclerView
+        recyclerView.layoutManager = GridLayoutManager(applicationContext,2)
 
         viewModel.getHeroes("spider-man").observe(this,{results->
             binding.textView.text = results?.results?.get(0)?.name
+            val adapter = GridSuperHeroAdapter(results.results as List<ResultsItem>)
+            recyclerView.adapter = adapter
         })
 
         viewModel.getLoadingStatus().observe(this,{loading->
