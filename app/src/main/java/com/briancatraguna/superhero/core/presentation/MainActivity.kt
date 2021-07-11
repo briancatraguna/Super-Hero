@@ -38,5 +38,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        viewModel.getConnectionStatus().observe(this,{success->
+            if (success){
+                binding.imgFail.visibility = View.GONE
+            } else {
+                binding.imgFail.visibility = View.VISIBLE
+            }
+        })
     }
 }
