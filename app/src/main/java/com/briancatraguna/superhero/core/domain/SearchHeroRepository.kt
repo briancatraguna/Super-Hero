@@ -2,7 +2,6 @@ package com.briancatraguna.superhero.core.domain
 
 import androidx.lifecycle.LiveData
 import com.briancatraguna.superhero.core.data.SearchHeroDataSource
-import com.briancatraguna.superhero.core.data.SearchHeroResponse
 import javax.inject.Inject
 
 class SearchHeroRepository: ISearchHeroRepository {

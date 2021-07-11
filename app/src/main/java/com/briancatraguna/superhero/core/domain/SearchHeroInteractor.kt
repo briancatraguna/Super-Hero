@@ -1,7 +1,6 @@
 package com.briancatraguna.superhero.core.domain
 
 import androidx.lifecycle.LiveData
-import com.briancatraguna.superhero.core.data.SearchHeroResponse
 import javax.inject.Inject
 
 class SearchHeroInteractor: SearchHeroUseCase {

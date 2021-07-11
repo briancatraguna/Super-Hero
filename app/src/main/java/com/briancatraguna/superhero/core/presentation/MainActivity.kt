@@ -2,6 +2,7 @@ package com.briancatraguna.superhero.core.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.briancatraguna.superhero.MyApplication
 import com.briancatraguna.superhero.databinding.ActivityMainBinding
@@ -26,7 +27,17 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this,factory)[MainViewModel::class.java]
 
         viewModel.getHeroes("spider-man").observe(this,{results->
+            binding.textView.text = results?.results?.get(0)?.name
+        })
 
+        viewModel.getLoadingStatus().observe(this,{loading->
+            if (loading){
+                binding.progressBar.visibility = View.VISIBLE
+                println("STILL LOADING")
+            } else {
+                binding.progressBar.visibility = View.GONE
+                println("FINISHED LOADING")
+            }
         })
 
     }

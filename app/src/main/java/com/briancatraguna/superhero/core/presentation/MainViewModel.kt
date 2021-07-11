@@ -2,7 +2,7 @@ package com.briancatraguna.superhero.core.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.briancatraguna.superhero.core.data.SearchHeroResponse
+import com.briancatraguna.superhero.core.domain.SearchHeroResponse
 import com.briancatraguna.superhero.core.domain.SearchHeroUseCase
 
 class MainViewModel(private val searchHeroUseCase: SearchHeroUseCase): ViewModel() {

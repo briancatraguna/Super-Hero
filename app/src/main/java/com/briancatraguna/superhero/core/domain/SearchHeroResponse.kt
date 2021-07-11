@@ -1,4 +1,4 @@
-package com.briancatraguna.superhero.core.data
+package com.briancatraguna.superhero.core.domain
 
 import com.google.gson.annotations.SerializedName
 

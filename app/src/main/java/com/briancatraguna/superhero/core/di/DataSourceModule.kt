@@ -8,6 +8,7 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
@@ -23,6 +24,7 @@ class DataSourceModule {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://www.superheroapi.com/api.php/10220286508415271/")
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(client)
             .build()
         return retrofit.create(SearchHeroApiService::class.java)
