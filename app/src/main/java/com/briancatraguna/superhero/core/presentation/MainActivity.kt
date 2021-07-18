@@ -59,10 +59,15 @@ class MainActivity : AppCompatActivity() {
         viewModel.getHeroes(searchQuery).observe(this,{results->
             println(results.response)
             if (results.response != "error"){
+                recyclerView.visibility = View.VISIBLE
+                binding.tvNoResults.visibility = View.GONE
+                binding.imgNoResult.visibility = View.GONE
                 val adapter = GridSuperHeroAdapter(results.results as List<ResultsItem>)
                 recyclerView.adapter = adapter
             } else {
-                TODO("What happens if there are no results")
+                binding.tvNoResults.visibility = View.VISIBLE
+                binding.imgNoResult.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
             }
         })
 
