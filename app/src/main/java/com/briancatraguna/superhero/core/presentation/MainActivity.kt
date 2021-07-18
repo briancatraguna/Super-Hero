@@ -2,9 +2,12 @@ package com.briancatraguna.superhero.core.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.briancatraguna.superhero.MyApplication
 import com.briancatraguna.superhero.core.domain.ResultsItem
 import com.briancatraguna.superhero.databinding.ActivityMainBinding
@@ -16,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
+    private lateinit var recyclerView: RecyclerView
 
     @Inject
     lateinit var factory: ViewModelFactory
@@ -27,17 +31,38 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this,factory)[MainViewModel::class.java]
-        val recyclerView = binding.recyclerView
+        recyclerView = binding.recyclerView
         recyclerView.layoutManager = GridLayoutManager(applicationContext,2)
 
-        viewModel.getHeroes("prikitiew").observe(this,{results->
+        initSearchBox()
+    }
+
+    private fun initSearchBox(){
+        binding.searchBar.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                loadAPIData()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+    }
+
+    private fun loadAPIData(){
+        val searchQuery = binding.searchBar.text.toString()
+        viewModel.getHeroes(searchQuery).observe(this,{results->
             println(results.response)
             if (results.response != "error"){
-                binding.textView.text = results?.results?.get(0)?.name
                 val adapter = GridSuperHeroAdapter(results.results as List<ResultsItem>)
                 recyclerView.adapter = adapter
             } else {
-                binding.textView.text = "NO RESULT FOUND"
+                TODO("What happens if there are no results")
             }
         })
 
