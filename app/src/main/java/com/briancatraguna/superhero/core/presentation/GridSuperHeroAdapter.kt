@@ -1,15 +1,19 @@
 package com.briancatraguna.superhero.core.presentation
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.briancatraguna.superhero.core.domain.ResultsItem
 import com.briancatraguna.superhero.databinding.ItemSuperheroBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class GridSuperHeroAdapter(val listSuperHero: List<ResultsItem>): RecyclerView.Adapter<GridSuperHeroAdapter.GridViewHolder>() {
+class GridSuperHeroAdapter(val listSuperHero: List<ResultsItem>,val activity: MainActivity): RecyclerView.Adapter<GridSuperHeroAdapter.GridViewHolder>() {
     inner class GridViewHolder(private val binding: ItemSuperheroBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(superhero: ResultsItem){
             with(binding){
@@ -20,6 +24,22 @@ class GridSuperHeroAdapter(val listSuperHero: List<ResultsItem>): RecyclerView.A
                 println(superhero.image)
                 title.text = superhero.name
                 desc.text = superhero.biography?.aliases?.get(0).toString()
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context,DetailActivity::class.java)
+                    intent.putExtra(DetailActivity.EXTRA_ITEM,superhero)
+                    var activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        activity,
+                        Pair<View,String>(
+                            image,
+                            DetailActivity.VIEW_IMAGE
+                        ),
+                        Pair<View,String>(
+                            title,
+                            DetailActivity.VIEW_TITLE
+                        )
+                    )
+                    itemView.context.startActivity(intent,activityOptions.toBundle())
+                }
             }
         }
     }
