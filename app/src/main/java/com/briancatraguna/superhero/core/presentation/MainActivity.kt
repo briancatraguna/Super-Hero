@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                 recyclerView.visibility = View.VISIBLE
                 binding.tvNoResults.visibility = View.GONE
                 binding.imgNoResult.visibility = View.GONE
-                val adapter = GridSuperHeroAdapter(results.results as List<ResultsItem>)
+                val adapter = GridSuperHeroAdapter(results.results as List<ResultsItem>,this)
                 recyclerView.adapter = adapter
             } else {
                 binding.tvNoResults.visibility = View.VISIBLE
