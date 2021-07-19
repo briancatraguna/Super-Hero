@@ -6,4 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".core.presentation.DetailActivity">
 
+    <ImageView
+        android:id="@+id/img_superhero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/superman_dummy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_superhero_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dummy_name"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/img_superhero"
+        tools:layout_editor_absoluteX="137dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
