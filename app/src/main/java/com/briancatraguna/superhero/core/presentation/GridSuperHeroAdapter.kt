@@ -1,6 +1,7 @@
 package com.briancatraguna.superhero.core.presentation
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,10 @@ class GridSuperHeroAdapter(val listSuperHero: List<ResultsItem>): RecyclerView.A
                 println(superhero.image)
                 title.text = superhero.name
                 desc.text = superhero.biography?.aliases?.get(0).toString()
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context,DetailActivity::class.java)
+                    itemView.context.startActivity(intent)
+                }
             }
         }
     }
