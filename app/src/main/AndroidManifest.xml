@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.briancatraguna.superhero">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".MyApplication"
@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperHero">
-        <activity android:name="com.briancatraguna.superhero.core.presentation.MainActivity">
+        <activity
+            android:name=".core.presentation.DetailActivity"
+            android:label="@string/title_activity_detail"
+            android:theme="@style/Theme.SuperHero.NoActionBar"></activity>
+        <activity android:name=".core.presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
