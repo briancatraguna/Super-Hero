@@ -5,7 +5,7 @@ import com.briancatraguna.superhero.core.domain.SearchHeroRepository
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [DataSourceModule::class])
+@Module(includes = [NetworkModule::class])
 abstract class RepositoryModule {
 
     @Binds

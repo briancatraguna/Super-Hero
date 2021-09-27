@@ -8,12 +8,9 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
-class SearchHeroDataSource:ISearchHeroDataSource {
+class RemoteDataSource:IRemoteDataSource {
 
     private val _heroes = MutableLiveData<SearchHeroResponse>()
     private val _isLoading = MutableLiveData<Boolean>()

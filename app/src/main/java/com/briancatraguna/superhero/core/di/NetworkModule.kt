@@ -1,7 +1,7 @@
 package com.briancatraguna.superhero.core.di
 
-import com.briancatraguna.superhero.core.data.ISearchHeroDataSource
-import com.briancatraguna.superhero.core.data.SearchHeroDataSource
+import com.briancatraguna.superhero.core.data.IRemoteDataSource
+import com.briancatraguna.superhero.core.data.RemoteDataSource
 import com.briancatraguna.superhero.core.data.api.SearchHeroApiService
 import dagger.Module
 import dagger.Provides
@@ -12,7 +12,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-class DataSourceModule {
+class NetworkModule {
 
     @Provides
     fun providesApiService(): SearchHeroApiService{
@@ -31,7 +31,7 @@ class DataSourceModule {
     }
 
     @Provides
-    fun providesDataSource(apiService: SearchHeroApiService): ISearchHeroDataSource {
-        return SearchHeroDataSource(apiService)
+    fun providesDataSource(apiService: SearchHeroApiService): IRemoteDataSource {
+        return RemoteDataSource(apiService)
     }
 }
