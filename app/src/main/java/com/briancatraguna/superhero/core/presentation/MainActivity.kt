@@ -13,6 +13,7 @@ import com.briancatraguna.superhero.core.domain.ResultsItem
 import com.briancatraguna.superhero.databinding.ActivityMainBinding
 
 import com.briancatraguna.superhero.core.domain.SearchHeroRepository
+import com.jakewharton.rxbinding2.widget.RxTextView
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -34,24 +35,15 @@ class MainActivity : AppCompatActivity() {
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = GridLayoutManager(applicationContext,2)
 
-        initSearchBox()
+        initView()
     }
 
-    private fun initSearchBox(){
-        binding.searchBar.addTextChangedListener(object: TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                loadAPIData()
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
-        })
+    private fun initView(){
+        binding.toolbar.tvTitle.text = "Home"
+        val searchStream = RxTextView.textChanges(binding.searchBar)
+        searchStream.subscribe {
+            loadAPIData()
+        }
     }
 
     private fun loadAPIData(){
@@ -74,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getLoadingStatus().observe(this,{loading->
             if (loading){
                 binding.progressBar.visibility = View.VISIBLE
+                binding.imgNoResult.visibility = View.GONE
             } else {
                 binding.progressBar.visibility = View.GONE
             }

@@ -3,6 +3,7 @@ package com.briancatraguna.superhero.core.domain
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 data class SearchHeroResponse(
 
@@ -82,7 +83,6 @@ data class Appearance(
 	val hairColor: String? = null
 )
 
-//TODO Make it parcelable
 data class ResultsItem(
 
 	@field:SerializedName("image")
