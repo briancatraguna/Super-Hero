@@ -26,19 +26,9 @@ class GridSuperHeroAdapter(val listSuperHero: List<ResultsItem>,val activity: Ma
                 desc.text = superhero.biography?.aliases?.get(0).toString()
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context,DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_ITEM,superhero)
-                    var activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        activity,
-                        Pair<View,String>(
-                            image,
-                            DetailActivity.VIEW_IMAGE
-                        ),
-                        Pair<View,String>(
-                            title,
-                            DetailActivity.VIEW_TITLE
-                        )
-                    )
-                    itemView.context.startActivity(intent,activityOptions.toBundle())
+                    intent.putExtra(DetailActivity.EXTRA_IMAGE,superhero.image?.url)
+                    intent.putExtra(DetailActivity.EXTRA_TITLE,superhero.name)
+                    itemView.context.startActivity(intent)
                 }
             }
         }
