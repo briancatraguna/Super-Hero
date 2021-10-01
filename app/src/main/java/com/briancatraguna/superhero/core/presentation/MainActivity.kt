@@ -2,17 +2,13 @@ package com.briancatraguna.superhero.core.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.briancatraguna.superhero.MyApplication
 import com.briancatraguna.superhero.core.domain.ResultsItem
 import com.briancatraguna.superhero.databinding.ActivityMainBinding
 
-import com.briancatraguna.superhero.core.domain.SearchHeroRepository
 import com.jakewharton.rxbinding2.widget.RxTextView
 import javax.inject.Inject
 
@@ -20,7 +16,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
-    private lateinit var recyclerView: RecyclerView
 
     @Inject
     lateinit var factory: ViewModelFactory
@@ -32,8 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this,factory)[MainViewModel::class.java]
-        recyclerView = binding.recyclerView
-        recyclerView.layoutManager = GridLayoutManager(applicationContext,2)
+        binding.recyclerView.layoutManager = GridLayoutManager(applicationContext,2)
 
         initView()
     }
@@ -51,15 +45,15 @@ class MainActivity : AppCompatActivity() {
         viewModel.getHeroes(searchQuery).observe(this,{results->
             println(results.response)
             if (results.response != "error"){
-                recyclerView.visibility = View.VISIBLE
+                binding.recyclerView.visibility = View.VISIBLE
                 binding.tvNoResults.visibility = View.GONE
                 binding.imgNoResult.visibility = View.GONE
                 val adapter = GridSuperHeroAdapter(results.results as List<ResultsItem>,this)
-                recyclerView.adapter = adapter
+                binding.recyclerView.adapter = adapter
             } else {
                 binding.tvNoResults.visibility = View.VISIBLE
                 binding.imgNoResult.visibility = View.VISIBLE
-                recyclerView.visibility = View.GONE
+                binding.recyclerView.visibility = View.GONE
             }
         })
 
