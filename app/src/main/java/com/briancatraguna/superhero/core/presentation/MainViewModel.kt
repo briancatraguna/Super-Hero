@@ -2,20 +2,33 @@ package com.briancatraguna.superhero.core.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.briancatraguna.superhero.core.domain.HeroEntity
 import com.briancatraguna.superhero.core.domain.SearchHeroResponse
-import com.briancatraguna.superhero.core.domain.SearchHeroUseCase
+import com.briancatraguna.superhero.core.domain.HeroUseCase
 
-class MainViewModel(private val searchHeroUseCase: SearchHeroUseCase): ViewModel() {
+class MainViewModel(private val heroUseCase: HeroUseCase): ViewModel() {
 
     fun getHeroes(search: String): LiveData<SearchHeroResponse>{
-        return searchHeroUseCase.getHeroes(search)
+        return heroUseCase.getHeroes(search)
     }
 
     fun getConnectionStatus(): LiveData<Boolean>{
-        return searchHeroUseCase.getConnectionStatus()
+        return heroUseCase.getConnectionStatus()
     }
 
     fun getLoadingStatus(): LiveData<Boolean>{
-        return searchHeroUseCase.getLoadingStatus()
+        return heroUseCase.getLoadingStatus()
+    }
+
+    fun getFavoriteHeroes(): LiveData<List<HeroEntity>>{
+        return heroUseCase.getFavoriteHeroes()
+    }
+
+    fun insertFavoriteHero(heroEntity: HeroEntity){
+        heroUseCase.insertFavoriteHero(heroEntity)
+    }
+
+    fun deleteFavoriteHero(heroName: String){
+        heroUseCase.deleteFavoriteHero(heroName)
     }
 }

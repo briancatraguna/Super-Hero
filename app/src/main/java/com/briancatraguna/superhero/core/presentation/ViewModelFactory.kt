@@ -2,24 +2,24 @@ package com.briancatraguna.superhero.core.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.briancatraguna.superhero.core.domain.SearchHeroUseCase
+import com.briancatraguna.superhero.core.domain.HeroUseCase
 import com.briancatraguna.superhero.di.AppScope
 import javax.inject.Inject
 
 @AppScope
 class ViewModelFactory: ViewModelProvider.NewInstanceFactory {
 
-    lateinit var searchHeroUseCase: SearchHeroUseCase
+    lateinit var heroUseCase: HeroUseCase
 
     @Inject
-    constructor(searchHeroUseCase: SearchHeroUseCase){
-        this.searchHeroUseCase = searchHeroUseCase
+    constructor(heroUseCase: HeroUseCase){
+        this.heroUseCase = heroUseCase
     }
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return when {
-            modelClass.isAssignableFrom(MainViewModel::class.java) -> MainViewModel(searchHeroUseCase) as T
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> MainViewModel(heroUseCase) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

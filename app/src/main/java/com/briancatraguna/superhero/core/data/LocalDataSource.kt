@@ -21,4 +21,8 @@ class LocalDataSource: ILocalDataSource {
     override fun insertHero(heroEntity: HeroEntity) {
         heroDao.insert(heroEntity)
     }
+
+    override fun deleteHero(heroName: String) {
+        heroDao.delete(heroName)
+    }
 }

@@ -1,7 +1,7 @@
 package com.briancatraguna.superhero.core.di
 
 import android.content.Context
-import com.briancatraguna.superhero.core.domain.ISearchHeroRepository
+import com.briancatraguna.superhero.core.domain.IHeroRepository
 import dagger.BindsInstance
 import dagger.Component
 
@@ -13,5 +13,5 @@ interface CoreComponent {
         fun create(@BindsInstance context: Context): CoreComponent
     }
 
-    fun provideRepository(): ISearchHeroRepository
+    fun provideRepository(): IHeroRepository
 }
