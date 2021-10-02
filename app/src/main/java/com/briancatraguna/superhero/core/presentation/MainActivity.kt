@@ -1,5 +1,6 @@
 package com.briancatraguna.superhero.core.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -34,6 +35,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView(){
         binding.toolbar.tvTitle.text = "Home"
+        binding.toolbar.imgFavorite.visibility = View.VISIBLE
+        binding.toolbar.imgFavorite.setOnClickListener {
+            val intent = Intent(this@MainActivity,FavoriteActivity::class.java)
+            startActivity(intent)
+        }
         val searchStream = RxTextView.textChanges(binding.searchBar)
         searchStream.subscribe {
             loadAPIData()
@@ -48,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 binding.recyclerView.visibility = View.VISIBLE
                 binding.tvNoResults.visibility = View.GONE
                 binding.imgNoResult.visibility = View.GONE
-                val adapter = GridSuperHeroAdapter(results.results as List<ResultsItem>,this)
+                val adapter = GridSuperHeroAdapter(results.results as List<ResultsItem>)
                 binding.recyclerView.adapter = adapter
             } else {
                 binding.tvNoResults.visibility = View.VISIBLE
