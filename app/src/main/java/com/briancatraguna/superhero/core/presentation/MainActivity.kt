@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView(){
         binding.toolbar.tvTitle.text = "Home"
-        binding.toolbar.imgFavorite.visibility = View.VISIBLE
-        binding.toolbar.imgFavorite.setOnClickListener {
+        binding.toolbar.imgFavoriteToolbar.visibility = View.VISIBLE
+        binding.toolbar.imgFavoriteToolbar.setOnClickListener {
             val intent = Intent(this@MainActivity,FavoriteActivity::class.java)
             startActivity(intent)
         }
