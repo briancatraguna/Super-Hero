@@ -13,7 +13,7 @@ import com.briancatraguna.superhero.databinding.ItemSuperheroBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class GridSuperHeroAdapter(val listSuperHero: List<ResultsItem>,val activity: MainActivity): RecyclerView.Adapter<GridSuperHeroAdapter.GridViewHolder>() {
+class GridSuperHeroAdapter(val listSuperHero: List<ResultsItem>): RecyclerView.Adapter<GridSuperHeroAdapter.GridViewHolder>() {
     inner class GridViewHolder(private val binding: ItemSuperheroBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(superhero: ResultsItem){
             with(binding){
@@ -21,7 +21,6 @@ class GridSuperHeroAdapter(val listSuperHero: List<ResultsItem>,val activity: Ma
                     .load(superhero.image?.url)
                     .apply(RequestOptions().override(500,500))
                     .into(image)
-                println(superhero.image)
                 title.text = superhero.name
                 desc.text = superhero.biography?.aliases?.get(0).toString()
                 itemView.setOnClickListener {
