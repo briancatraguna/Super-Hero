@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.briancatraguna.superhero.MyApplication
+import com.briancatraguna.superhero.core.domain.HeroEntity
 import com.briancatraguna.superhero.databinding.ActivityFavoriteBinding
 import javax.inject.Inject
 
@@ -33,7 +35,11 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun loadFavoritesData() {
-
+        viewModel.getFavoriteHeroes().observe(this,{favorites ->
+            val adapter = FavoritesAdapter(favorites)
+            binding.rvFavorites.adapter = adapter
+            binding.rvFavorites.layoutManager = GridLayoutManager(applicationContext,2)
+        })
     }
 
     private fun initView() {
