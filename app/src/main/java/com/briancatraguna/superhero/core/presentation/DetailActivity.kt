@@ -21,8 +21,14 @@ class DetailActivity : AppCompatActivity() {
     private var isFavorite = false
 
     companion object{
-        val EXTRA_IMAGE = "image"
-        val EXTRA_TITLE = "title"
+        const val EXTRA_IMAGE = "image"
+        const val EXTRA_TITLE = "title"
+        const val EXTRA_STRENGTH = "strength"
+        const val EXTRA_DURABILITY = "durability"
+        const val EXTRA_COMBAT = "combat"
+        const val EXTRA_POWER = "power"
+        const val EXTRA_SPEED = "speed"
+        const val EXTRA_INTELLIGENCE = "intelligence"
     }
 
     @Inject
@@ -40,18 +46,32 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initView(){
-        binding.toolbar.tvTitle.text = "Details"
+
         binding.toolbar.imgBack.visibility = View.VISIBLE
         binding.toolbar.imgBack.setOnClickListener {
             onBackPressed()
         }
         val image = intent.getStringExtra(EXTRA_IMAGE)
         val title = intent.getStringExtra(EXTRA_TITLE)
+        val strength = intent.getStringExtra(EXTRA_STRENGTH)
+        val durability = intent.getStringExtra(EXTRA_DURABILITY)
+        val combat = intent.getStringExtra(EXTRA_COMBAT)
+        val power = intent.getStringExtra(EXTRA_POWER)
+        val speed = intent.getStringExtra(EXTRA_SPEED)
+        val intelligence = intent.getStringExtra(EXTRA_INTELLIGENCE)
+
+        binding.toolbar.tvTitle.text = title
         Glide.with(this)
             .load(image)
             .apply(RequestOptions().override(500,500))
             .into(binding.imgSuperhero)
-        binding.tvSuperheroName.text = title
+        binding.tvName.text = "Name: ${title}"
+        binding.tvStrength.text = "Strength: ${strength}"
+        binding.tvDurability.text = "Durability: ${durability}"
+        binding.tvCombat.text = "Combat: ${combat}"
+        binding.tvPower.text = "Power: ${power}"
+        binding.tvSpeed.text = "Speed: ${speed}"
+        binding.tvIntelligence.text = "Intelligence ${intelligence}"
 
         initFavorite(title)
 
@@ -65,7 +85,7 @@ class DetailActivity : AppCompatActivity() {
                 Toast.makeText(this,"${title} is removed from favorites!",Toast.LENGTH_SHORT).show()
             } else {
                 Thread{
-                    viewModel.insertFavoriteHero(HeroEntity(0,image.toString(),title.toString()))
+                    viewModel.insertFavoriteHero(HeroEntity(0,image.toString(),title.toString(),strength.toString(),durability.toString(),combat.toString(),power.toString(),speed.toString(),intelligence.toString()))
                 }.start()
                 binding.imgFavorite.setImageResource(R.drawable.ic_favorite)
                 isFavorite = true

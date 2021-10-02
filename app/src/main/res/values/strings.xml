@@ -14,4 +14,5 @@
     <string name="dummy_name">Superman</string>
     <string name="instructions">Add/remove to favorites!</string>
     <string name="dummy_title">Dummy Title</string>
+    <string name="dummy_stats">Name: Superman</string>
 </resources>

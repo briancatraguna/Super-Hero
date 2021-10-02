@@ -27,6 +27,12 @@ class GridSuperHeroAdapter(val listSuperHero: List<ResultsItem>): RecyclerView.A
                     val intent = Intent(itemView.context,DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_IMAGE,superhero.image?.url)
                     intent.putExtra(DetailActivity.EXTRA_TITLE,superhero.name)
+                    intent.putExtra(DetailActivity.EXTRA_STRENGTH,superhero.powerstats?.strength)
+                    intent.putExtra(DetailActivity.EXTRA_DURABILITY,superhero.powerstats?.durability)
+                    intent.putExtra(DetailActivity.EXTRA_COMBAT,superhero.powerstats?.combat)
+                    intent.putExtra(DetailActivity.EXTRA_POWER,superhero.powerstats?.power)
+                    intent.putExtra(DetailActivity.EXTRA_SPEED,superhero.powerstats?.speed)
+                    intent.putExtra(DetailActivity.EXTRA_INTELLIGENCE,superhero.powerstats?.intelligence)
                     itemView.context.startActivity(intent)
                 }
             }

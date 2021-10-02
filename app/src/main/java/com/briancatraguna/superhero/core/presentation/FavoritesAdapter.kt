@@ -23,6 +23,12 @@ class FavoritesAdapter(val listFavorite: List<HeroEntity>): RecyclerView.Adapter
                     val intent = Intent(itemView.context,DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_IMAGE,heroEntity.image)
                     intent.putExtra(DetailActivity.EXTRA_TITLE,heroEntity.name)
+                    intent.putExtra(DetailActivity.EXTRA_STRENGTH,heroEntity.strength)
+                    intent.putExtra(DetailActivity.EXTRA_DURABILITY,heroEntity.durability)
+                    intent.putExtra(DetailActivity.EXTRA_COMBAT,heroEntity.combat)
+                    intent.putExtra(DetailActivity.EXTRA_POWER,heroEntity.power)
+                    intent.putExtra(DetailActivity.EXTRA_SPEED,heroEntity.speed)
+                    intent.putExtra(DetailActivity.EXTRA_INTELLIGENCE,heroEntity.intelligence)
                     itemView.context.startActivity(intent)
                 }
             }
