@@ -2,7 +2,6 @@ package com.briancatraguna.superhero.di
 
 import com.briancatraguna.superhero.core.di.CoreComponent
 import com.briancatraguna.superhero.ui.DetailActivity
-import com.briancatraguna.superhero.ui.FavoriteActivity
 import com.briancatraguna.superhero.ui.MainActivity
 import dagger.Component
 
@@ -19,5 +18,4 @@ interface AppComponent {
 
     fun inject(activity: MainActivity)
     fun inject(activity: DetailActivity)
-    fun inject(activity: FavoriteActivity)
 }

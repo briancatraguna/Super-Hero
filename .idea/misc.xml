@@ -8,6 +8,8 @@
         <entry key="..\:/AndroidDeveloperExpert/Super-Hero/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidDeveloperExpert/Super-Hero/app/src/main/res/layout/item_superhero.xml" value="0.15534420289855072" />
         <entry key="..\:/AndroidDeveloperExpert/Super-Hero/app/src/main/res/layout/toolbar.xml" value="0.6" />
+        <entry key="..\:/AndroidDeveloperExpert/Super-Hero/favorites/src/main/res/layout/activity_favorite.xml" value="0.1" />
+        <entry key="..\:/AndroidDeveloperExpert/Super-Hero/favorites/src/main/res/layout/toolbar.xml" value="0.1" />
       </map>
     </option>
   </component>

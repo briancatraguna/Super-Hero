@@ -15,4 +15,5 @@
     <string name="instructions">Add/remove to favorites!</string>
     <string name="dummy_title">Dummy Title</string>
     <string name="dummy_stats">Name: Superman</string>
+    <string name="title_favorites">Favorites</string>
 </resources>

@@ -8,7 +8,7 @@ import com.briancatraguna.superhero.di.DaggerAppComponent
 
 open class MyApplication : Application() {
 
-    private val coreComponent: CoreComponent by lazy{
+    val coreComponent: CoreComponent by lazy{
         DaggerCoreComponent.factory().create(applicationContext)
     }
 
