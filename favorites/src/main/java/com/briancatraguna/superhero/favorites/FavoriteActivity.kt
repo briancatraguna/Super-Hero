@@ -1,4 +1,4 @@
-package com.briancatraguna.superhero.ui
+package com.briancatraguna.superhero.favorites
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,9 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.briancatraguna.superhero.MyApplication
-import com.briancatraguna.superhero.databinding.ActivityFavoriteBinding
+import com.briancatraguna.superhero.favorites.databinding.ActivityFavoriteBinding
+import com.briancatraguna.superhero.ui.MainViewModel
+import com.briancatraguna.superhero.ui.ViewModelFactory
 import javax.inject.Inject
 
 class FavoriteActivity : AppCompatActivity() {
@@ -18,7 +20,8 @@ class FavoriteActivity : AppCompatActivity() {
     lateinit var factory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MyApplication).appComponent.inject(this)
+        val coreComponent = (application as MyApplication).coreComponent
+        DaggerFavoriteComponent.factory().create(coreComponent).inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)

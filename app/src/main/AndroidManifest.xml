@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperHero">
         <activity
-            android:name=".ui.FavoriteActivity"
+            android:name=".favorites.FavoriteActivity"
             android:exported="true" />
         <activity
             android:name=".ui.DetailActivity"
