@@ -1,14 +1,14 @@
 package com.briancatraguna.superhero.core.data.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.briancatraguna.superhero.core.domain.HeroEntity
+import io.reactivex.Observable
 
 @Dao
 interface HeroDao {
 
     @Query("SELECT * FROM heroentity")
-    fun getAllHeroes(): LiveData<List<HeroEntity>>
+    fun getAllHeroes(): Observable<List<HeroEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(heroEntity: HeroEntity)
