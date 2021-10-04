@@ -11,7 +11,7 @@ class HeroRepository: IHeroRepository {
     lateinit var localDataSource: LocalDataSource
 
     @Inject
-    constructor(remoteDataSource: RemoteDataSource,localDataSource: LocalDataSource){
+    constructor(remoteDataSource: RemoteDataSource, localDataSource: LocalDataSource){
         this.remoteDataSource = remoteDataSource
         this.localDataSource = localDataSource
 

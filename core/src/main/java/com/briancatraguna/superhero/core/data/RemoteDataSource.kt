@@ -10,7 +10,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class RemoteDataSource:IRemoteDataSource {
+class RemoteDataSource: IRemoteDataSource {
 
     private val _heroes = MutableLiveData<SearchHeroResponse>()
     private val _isLoading = MutableLiveData<Boolean>()

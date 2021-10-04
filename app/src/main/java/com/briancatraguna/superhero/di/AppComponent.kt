@@ -1,9 +1,9 @@
 package com.briancatraguna.superhero.di
 
 import com.briancatraguna.superhero.core.di.CoreComponent
-import com.briancatraguna.superhero.core.presentation.DetailActivity
-import com.briancatraguna.superhero.core.presentation.FavoriteActivity
-import com.briancatraguna.superhero.core.presentation.MainActivity
+import com.briancatraguna.superhero.ui.DetailActivity
+import com.briancatraguna.superhero.ui.FavoriteActivity
+import com.briancatraguna.superhero.ui.MainActivity
 import dagger.Component
 
 @AppScope

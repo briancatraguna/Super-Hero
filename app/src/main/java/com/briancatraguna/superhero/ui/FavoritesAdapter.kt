@@ -1,4 +1,4 @@
-package com.briancatraguna.superhero.core.presentation
+package com.briancatraguna.superhero.ui
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -20,7 +20,7 @@ class FavoritesAdapter(val listFavorite: List<HeroEntity>): RecyclerView.Adapter
                     .into(image)
                 title.text = heroEntity.name
                 itemView.setOnClickListener{
-                    val intent = Intent(itemView.context,DetailActivity::class.java)
+                    val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_IMAGE,heroEntity.image)
                     intent.putExtra(DetailActivity.EXTRA_TITLE,heroEntity.name)
                     intent.putExtra(DetailActivity.EXTRA_STRENGTH,heroEntity.strength)
@@ -35,12 +35,12 @@ class FavoritesAdapter(val listFavorite: List<HeroEntity>): RecyclerView.Adapter
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemSuperheroBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FavoritesAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(listFavorite[position])
     }
 

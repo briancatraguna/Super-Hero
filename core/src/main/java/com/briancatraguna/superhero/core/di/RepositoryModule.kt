@@ -5,7 +5,7 @@ import com.briancatraguna.superhero.core.domain.HeroRepository
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [NetworkModule::class,DatabaseModule::class])
+@Module(includes = [NetworkModule::class, DatabaseModule::class])
 abstract class RepositoryModule {
 
     @Binds
