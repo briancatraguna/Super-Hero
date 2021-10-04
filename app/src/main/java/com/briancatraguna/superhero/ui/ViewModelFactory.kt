@@ -1,4 +1,4 @@
-package com.briancatraguna.superhero.core.presentation
+package com.briancatraguna.superhero.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

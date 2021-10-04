@@ -1,4 +1,4 @@
-package com.briancatraguna.superhero.core.presentation
+package com.briancatraguna.superhero.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.briancatraguna.superhero.MyApplication
-import com.briancatraguna.superhero.core.domain.HeroEntity
 import com.briancatraguna.superhero.databinding.ActivityFavoriteBinding
 import javax.inject.Inject
 

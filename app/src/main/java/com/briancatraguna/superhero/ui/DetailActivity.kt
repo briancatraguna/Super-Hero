@@ -1,10 +1,9 @@
-package com.briancatraguna.superhero.core.presentation
+package com.briancatraguna.superhero.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import com.briancatraguna.superhero.MyApplication
 import com.briancatraguna.superhero.R

@@ -13,13 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperHero">
         <activity
-            android:name=".core.presentation.FavoriteActivity"
+            android:name=".ui.FavoriteActivity"
             android:exported="true" />
         <activity
-            android:name=".core.presentation.DetailActivity"
+            android:name=".ui.DetailActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/Theme.SuperHero.NoActionBar" />
-        <activity android:name=".core.presentation.MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

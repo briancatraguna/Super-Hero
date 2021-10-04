@@ -1,12 +1,8 @@
-package com.briancatraguna.superhero.core.presentation
+package com.briancatraguna.superhero.ui
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.briancatraguna.superhero.core.domain.ResultsItem
 import com.briancatraguna.superhero.databinding.ItemSuperheroBinding
@@ -24,7 +20,7 @@ class GridSuperHeroAdapter(val listSuperHero: List<ResultsItem>): RecyclerView.A
                 title.text = superhero.name
                 desc.text = superhero.biography?.aliases?.get(0).toString()
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context,DetailActivity::class.java)
+                    val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_IMAGE,superhero.image?.url)
                     intent.putExtra(DetailActivity.EXTRA_TITLE,superhero.name)
                     intent.putExtra(DetailActivity.EXTRA_STRENGTH,superhero.powerstats?.strength)
