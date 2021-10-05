@@ -89,7 +89,19 @@ class DetailActivity : AppCompatActivity() {
                 Toast.makeText(this,"${title} is removed from favorites!",Toast.LENGTH_SHORT).show()
             } else {
                 Thread{
-                    viewModel.insertFavoriteHero(HeroEntity(0,image,title,desc,strength,durability,combat,power,speed,intelligence))
+                    viewModel.insertFavoriteHero(
+                        HeroItem(
+                            image,
+                            title,
+                            desc,
+                            strength,
+                            durability,
+                            combat,
+                            power,
+                            speed,
+                            intelligence
+                        )
+                    )
                 }.start()
                 binding.imgFavorite.setImageResource(R.drawable.ic_favorite)
                 isFavorite = true

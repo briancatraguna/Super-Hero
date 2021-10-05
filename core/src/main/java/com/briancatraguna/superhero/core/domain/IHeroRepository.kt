@@ -13,7 +13,7 @@ interface IHeroRepository {
 
     fun getFavoriteHeroes(): LiveData<DomainEntity>
 
-    fun insertFavoriteHero(heroEntity: HeroEntity)
+    fun insertFavoriteHero(hero: HeroItem)
 
     fun deleteFavoriteHero(heroName: String)
 }

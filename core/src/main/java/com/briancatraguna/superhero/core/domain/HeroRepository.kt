@@ -34,8 +34,8 @@ class HeroRepository: IHeroRepository {
         return localDataSource.getHeroes()
     }
 
-    override fun insertFavoriteHero(heroEntity: HeroEntity) {
-        localDataSource.insertHero(heroEntity)
+    override fun insertFavoriteHero(hero: HeroItem) {
+        localDataSource.insertHero(hero)
     }
 
     override fun deleteFavoriteHero(heroName: String) {

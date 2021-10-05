@@ -29,7 +29,19 @@ class LocalDataSource: ILocalDataSource {
         return heroes
     }
 
-    override fun insertHero(heroEntity: HeroEntity) {
+    override fun insertHero(hero: HeroItem) {
+        val heroEntity = HeroEntity(
+            id = 0,
+            image = hero.image.toString(),
+            name = hero.name.toString(),
+            desc = hero.desc.toString(),
+            strength = hero.strength.toString(),
+            durability = hero.durability.toString(),
+            combat = hero.combat.toString(),
+            power = hero.power.toString(),
+            speed = hero.speed.toString(),
+            intelligence = hero.intelligence.toString()
+        )
         heroDao.insert(heroEntity)
     }
 
