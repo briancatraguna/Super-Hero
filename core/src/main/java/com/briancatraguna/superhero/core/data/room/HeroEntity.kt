@@ -1,4 +1,4 @@
-package com.briancatraguna.superhero.core.domain
+package com.briancatraguna.superhero.core.data.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

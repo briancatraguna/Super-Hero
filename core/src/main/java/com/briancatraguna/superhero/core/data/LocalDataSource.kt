@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observer
 import com.briancatraguna.superhero.core.data.room.HeroDao
-import com.briancatraguna.superhero.core.domain.HeroEntity
+import com.briancatraguna.superhero.core.data.room.HeroEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers

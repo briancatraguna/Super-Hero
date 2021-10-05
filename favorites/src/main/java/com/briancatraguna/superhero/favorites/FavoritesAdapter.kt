@@ -4,7 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.briancatraguna.superhero.core.domain.HeroEntity
+import com.briancatraguna.superhero.core.data.room.HeroEntity
 import com.briancatraguna.superhero.databinding.ItemSuperheroBinding
 import com.briancatraguna.superhero.ui.DetailActivity
 import com.bumptech.glide.Glide
@@ -20,6 +20,7 @@ class FavoritesAdapter(val listFavorite: List<HeroEntity>): RecyclerView.Adapter
                     .apply(RequestOptions().override(500,500))
                     .into(image)
                 title.text = heroEntity.name
+                desc.text = ""
                 itemView.setOnClickListener{
                     val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_IMAGE,heroEntity.image)

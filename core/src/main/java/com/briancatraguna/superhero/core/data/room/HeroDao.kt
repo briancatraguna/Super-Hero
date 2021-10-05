@@ -1,7 +1,6 @@
 package com.briancatraguna.superhero.core.data.room
 
 import androidx.room.*
-import com.briancatraguna.superhero.core.domain.HeroEntity
 import io.reactivex.Observable
 
 @Dao

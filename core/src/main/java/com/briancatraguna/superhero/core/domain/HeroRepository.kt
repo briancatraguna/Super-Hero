@@ -3,6 +3,7 @@ package com.briancatraguna.superhero.core.domain
 import androidx.lifecycle.LiveData
 import com.briancatraguna.superhero.core.data.LocalDataSource
 import com.briancatraguna.superhero.core.data.RemoteDataSource
+import com.briancatraguna.superhero.core.data.room.HeroEntity
 import javax.inject.Inject
 
 class HeroRepository: IHeroRepository {
@@ -17,7 +18,7 @@ class HeroRepository: IHeroRepository {
 
     }
 
-    override fun getHeroes(search: String): LiveData<SearchHeroResponse> {
+    override fun getHeroes(search: String): LiveData<DomainEntity> {
         return remoteDataSource.getHeroes(search)
     }
 

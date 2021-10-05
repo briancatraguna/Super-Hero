@@ -1,6 +1,7 @@
 package com.briancatraguna.superhero.core.domain
 
 import androidx.lifecycle.LiveData
+import com.briancatraguna.superhero.core.data.room.HeroEntity
 import javax.inject.Inject
 
 class HeroInteractor: HeroUseCase {
@@ -12,7 +13,7 @@ class HeroInteractor: HeroUseCase {
         this.heroRepository = heroRepository
     }
 
-    override fun getHeroes(search: String): LiveData<SearchHeroResponse> {
+    override fun getHeroes(search: String): LiveData<DomainEntity> {
         return heroRepository.getHeroes(search)
     }
 

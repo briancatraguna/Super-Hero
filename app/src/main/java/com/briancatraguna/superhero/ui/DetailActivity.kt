@@ -7,7 +7,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.briancatraguna.superhero.MyApplication
 import com.briancatraguna.superhero.R
-import com.briancatraguna.superhero.core.domain.HeroEntity
+import com.briancatraguna.superhero.core.data.room.HeroEntity
+import com.briancatraguna.superhero.core.domain.HeroItem
 import com.briancatraguna.superhero.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -28,6 +29,7 @@ class DetailActivity : AppCompatActivity() {
         const val EXTRA_POWER = "power"
         const val EXTRA_SPEED = "speed"
         const val EXTRA_INTELLIGENCE = "intelligence"
+        const val EXTRA_HERO = "hero"
     }
 
     @Inject
@@ -50,14 +52,16 @@ class DetailActivity : AppCompatActivity() {
         binding.toolbar.imgBack.setOnClickListener {
             onBackPressed()
         }
-        val image = intent.getStringExtra(EXTRA_IMAGE)
-        val title = intent.getStringExtra(EXTRA_TITLE)
-        val strength = intent.getStringExtra(EXTRA_STRENGTH)
-        val durability = intent.getStringExtra(EXTRA_DURABILITY)
-        val combat = intent.getStringExtra(EXTRA_COMBAT)
-        val power = intent.getStringExtra(EXTRA_POWER)
-        val speed = intent.getStringExtra(EXTRA_SPEED)
-        val intelligence = intent.getStringExtra(EXTRA_INTELLIGENCE)
+
+        val extraHero = intent.getParcelableExtra<HeroItem>(EXTRA_HERO)
+        val image = extraHero?.image.toString()
+        val title = extraHero?.name.toString()
+        val strength = extraHero?.strength.toString()
+        val durability = extraHero?.durability.toString()
+        val combat = extraHero?.combat.toString()
+        val power = extraHero?.power.toString()
+        val speed = extraHero?.speed.toString()
+        val intelligence = extraHero?.intelligence.toString()
 
         binding.toolbar.tvTitle.text = title
         Glide.with(this)
@@ -70,7 +74,7 @@ class DetailActivity : AppCompatActivity() {
         binding.tvCombat.text = "Combat: ${combat}"
         binding.tvPower.text = "Power: ${power}"
         binding.tvSpeed.text = "Speed: ${speed}"
-        binding.tvIntelligence.text = "Intelligence ${intelligence}"
+        binding.tvIntelligence.text = "Intelligence: ${intelligence}"
 
         initFavorite(title)
 
