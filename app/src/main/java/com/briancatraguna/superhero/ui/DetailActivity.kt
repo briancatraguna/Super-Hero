@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.briancatraguna.superhero.MyApplication
 import com.briancatraguna.superhero.R
-import com.briancatraguna.superhero.core.domain.HeroEntity
+import com.briancatraguna.superhero.core.domain.HeroItem
 import com.briancatraguna.superhero.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -20,14 +20,7 @@ class DetailActivity : AppCompatActivity() {
     private var isFavorite = false
 
     companion object{
-        const val EXTRA_IMAGE = "image"
-        const val EXTRA_TITLE = "title"
-        const val EXTRA_STRENGTH = "strength"
-        const val EXTRA_DURABILITY = "durability"
-        const val EXTRA_COMBAT = "combat"
-        const val EXTRA_POWER = "power"
-        const val EXTRA_SPEED = "speed"
-        const val EXTRA_INTELLIGENCE = "intelligence"
+        const val EXTRA_HERO = "hero"
     }
 
     @Inject
@@ -50,14 +43,17 @@ class DetailActivity : AppCompatActivity() {
         binding.toolbar.imgBack.setOnClickListener {
             onBackPressed()
         }
-        val image = intent.getStringExtra(EXTRA_IMAGE)
-        val title = intent.getStringExtra(EXTRA_TITLE)
-        val strength = intent.getStringExtra(EXTRA_STRENGTH)
-        val durability = intent.getStringExtra(EXTRA_DURABILITY)
-        val combat = intent.getStringExtra(EXTRA_COMBAT)
-        val power = intent.getStringExtra(EXTRA_POWER)
-        val speed = intent.getStringExtra(EXTRA_SPEED)
-        val intelligence = intent.getStringExtra(EXTRA_INTELLIGENCE)
+
+        val extraHero = intent.getParcelableExtra<HeroItem>(EXTRA_HERO)
+        val image = extraHero?.image.toString()
+        val title = extraHero?.name.toString()
+        val desc = extraHero?.desc.toString()
+        val strength = extraHero?.strength.toString()
+        val durability = extraHero?.durability.toString()
+        val combat = extraHero?.combat.toString()
+        val power = extraHero?.power.toString()
+        val speed = extraHero?.speed.toString()
+        val intelligence = extraHero?.intelligence.toString()
 
         binding.toolbar.tvTitle.text = title
         Glide.with(this)
@@ -70,7 +66,7 @@ class DetailActivity : AppCompatActivity() {
         binding.tvCombat.text = "Combat: ${combat}"
         binding.tvPower.text = "Power: ${power}"
         binding.tvSpeed.text = "Speed: ${speed}"
-        binding.tvIntelligence.text = "Intelligence ${intelligence}"
+        binding.tvIntelligence.text = "Intelligence: ${intelligence}"
 
         initFavorite(title)
 
@@ -84,7 +80,19 @@ class DetailActivity : AppCompatActivity() {
                 Toast.makeText(this,"${title} is removed from favorites!",Toast.LENGTH_SHORT).show()
             } else {
                 Thread{
-                    viewModel.insertFavoriteHero(HeroEntity(0,image.toString(),title.toString(),strength.toString(),durability.toString(),combat.toString(),power.toString(),speed.toString(),intelligence.toString()))
+                    viewModel.insertFavoriteHero(
+                        HeroItem(
+                            image,
+                            title,
+                            desc,
+                            strength,
+                            durability,
+                            combat,
+                            power,
+                            speed,
+                            intelligence
+                        )
+                    )
                 }.start()
                 binding.imgFavorite.setImageResource(R.drawable.ic_favorite)
                 isFavorite = true
@@ -95,10 +103,13 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initFavorite(title: String?) {
         viewModel.getFavoriteHeroes().observe(this,{heroes->
-            for (hero in heroes){
-                if (title == hero.name){
-                    binding.imgFavorite.setImageResource(R.drawable.ic_favorite)
-                    isFavorite = true
+            val listHeroes = heroes.heroItems
+            if (listHeroes != null) {
+                for (hero in listHeroes){
+                    if (title == hero.name){
+                        binding.imgFavorite.setImageResource(R.drawable.ic_favorite)
+                        isFavorite = true
+                    }
                 }
             }
         })

@@ -3,6 +3,8 @@ package com.briancatraguna.superhero.core.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.briancatraguna.superhero.core.data.api.SearchHeroApiService
+import com.briancatraguna.superhero.core.domain.DomainEntity
+import com.briancatraguna.superhero.core.domain.HeroItem
 import com.briancatraguna.superhero.core.domain.SearchHeroResponse
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,7 +14,7 @@ import javax.inject.Inject
 
 class RemoteDataSource: IRemoteDataSource {
 
-    private val _heroes = MutableLiveData<SearchHeroResponse>()
+    private val _heroes = MutableLiveData<DomainEntity>()
     private val _isLoading = MutableLiveData<Boolean>()
     private val _isConnected = MutableLiveData<Boolean>()
 
@@ -23,9 +25,9 @@ class RemoteDataSource: IRemoteDataSource {
         this.apiService = apiService
     }
 
-    override fun getHeroes(search: String): LiveData<SearchHeroResponse> {
+    override fun getHeroes(search: String): LiveData<DomainEntity> {
         runQuery(search)
-        val heroes: LiveData<SearchHeroResponse> = _heroes
+        val heroes: LiveData<DomainEntity> = _heroes
         return heroes
     }
 
@@ -55,12 +57,34 @@ class RemoteDataSource: IRemoteDataSource {
 
             override fun onNext(t: SearchHeroResponse) {
                 if (t.response != "error"){
-                    _heroes.value = t
+                    val listResult = t.results
+                    var heroItems = mutableListOf<HeroItem>()
+                    if (listResult != null) {
+                        for (item in listResult){
+                            heroItems.add(
+                                HeroItem(
+                                    item?.image?.url,
+                                    item?.name,
+                                    item?.biography?.aliases?.get(0),
+                                    item?.powerstats?.strength,
+                                    item?.powerstats?.durability,
+                                    item?.powerstats?.combat,
+                                    item?.powerstats?.power,
+                                    item?.powerstats?.speed,
+                                    item?.powerstats?.intelligence
+                                )
+                            )
+                        }
+                    }
+                    val result = DomainEntity(
+                        isError = false,
+                        heroItems = heroItems
+                    )
+                    _heroes.value = result
                 } else {
-                    _heroes.value = SearchHeroResponse(
-                        resultsFor = null,
-                        response = "error",
-                        results = null
+                    _heroes.value = DomainEntity(
+                        isError = true,
+                        heroItems = null
                     )
                 }
             }

@@ -17,7 +17,7 @@ class HeroRepository: IHeroRepository {
 
     }
 
-    override fun getHeroes(search: String): LiveData<SearchHeroResponse> {
+    override fun getHeroes(search: String): LiveData<DomainEntity> {
         return remoteDataSource.getHeroes(search)
     }
 
@@ -29,12 +29,12 @@ class HeroRepository: IHeroRepository {
         return remoteDataSource.getLoadingStatus()
     }
 
-    override fun getFavoriteHeroes(): LiveData<List<HeroEntity>> {
+    override fun getFavoriteHeroes(): LiveData<DomainEntity> {
         return localDataSource.getHeroes()
     }
 
-    override fun insertFavoriteHero(heroEntity: HeroEntity) {
-        localDataSource.insertHero(heroEntity)
+    override fun insertFavoriteHero(hero: HeroItem) {
+        localDataSource.insertHero(hero)
     }
 
     override fun deleteFavoriteHero(heroName: String) {

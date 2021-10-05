@@ -12,7 +12,7 @@ class HeroInteractor: HeroUseCase {
         this.heroRepository = heroRepository
     }
 
-    override fun getHeroes(search: String): LiveData<SearchHeroResponse> {
+    override fun getHeroes(search: String): LiveData<DomainEntity> {
         return heroRepository.getHeroes(search)
     }
 
@@ -24,12 +24,12 @@ class HeroInteractor: HeroUseCase {
         return heroRepository.getLoadingStatus()
     }
 
-    override fun getFavoriteHeroes(): LiveData<List<HeroEntity>> {
+    override fun getFavoriteHeroes(): LiveData<DomainEntity> {
         return heroRepository.getFavoriteHeroes()
     }
 
-    override fun insertFavoriteHero(heroEntity: HeroEntity) {
-        heroRepository.insertFavoriteHero(heroEntity)
+    override fun insertFavoriteHero(hero: HeroItem) {
+        heroRepository.insertFavoriteHero(hero)
     }
 
     override fun deleteFavoriteHero(heroName: String) {

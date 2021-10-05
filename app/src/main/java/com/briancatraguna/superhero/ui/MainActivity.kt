@@ -7,7 +7,6 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.briancatraguna.superhero.MyApplication
-import com.briancatraguna.superhero.core.domain.ResultsItem
 import com.briancatraguna.superhero.databinding.ActivityMainBinding
 
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -49,12 +48,11 @@ class MainActivity : AppCompatActivity() {
     private fun loadAPIData(){
         val searchQuery = binding.searchBar.text.toString()
         viewModel.getHeroes(searchQuery).observe(this,{results->
-            println(results.response)
-            if (results.response != "error"){
+            if (!results.isError){
                 binding.recyclerView.visibility = View.VISIBLE
                 binding.tvNoResults.visibility = View.GONE
                 binding.imgNoResult.visibility = View.GONE
-                val adapter = GridSuperHeroAdapter(results.results as List<ResultsItem>)
+                val adapter = GridSuperHeroAdapter(results.heroItems!!)
                 binding.recyclerView.adapter = adapter
             } else {
                 binding.tvNoResults.visibility = View.VISIBLE
