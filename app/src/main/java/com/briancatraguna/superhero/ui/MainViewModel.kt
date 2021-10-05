@@ -2,10 +2,8 @@ package com.briancatraguna.superhero.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.briancatraguna.superhero.core.data.room.HeroEntity
 import com.briancatraguna.superhero.core.domain.DomainEntity
 import com.briancatraguna.superhero.core.domain.HeroItem
-import com.briancatraguna.superhero.core.domain.SearchHeroResponse
 import com.briancatraguna.superhero.core.domain.HeroUseCase
 
 class MainViewModel(private val heroUseCase: HeroUseCase): ViewModel() {

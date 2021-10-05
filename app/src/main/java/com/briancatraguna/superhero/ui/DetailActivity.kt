@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.briancatraguna.superhero.MyApplication
 import com.briancatraguna.superhero.R
-import com.briancatraguna.superhero.core.data.room.HeroEntity
 import com.briancatraguna.superhero.core.domain.HeroItem
 import com.briancatraguna.superhero.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
@@ -21,14 +20,6 @@ class DetailActivity : AppCompatActivity() {
     private var isFavorite = false
 
     companion object{
-        const val EXTRA_IMAGE = "image"
-        const val EXTRA_TITLE = "title"
-        const val EXTRA_STRENGTH = "strength"
-        const val EXTRA_DURABILITY = "durability"
-        const val EXTRA_COMBAT = "combat"
-        const val EXTRA_POWER = "power"
-        const val EXTRA_SPEED = "speed"
-        const val EXTRA_INTELLIGENCE = "intelligence"
         const val EXTRA_HERO = "hero"
     }
 

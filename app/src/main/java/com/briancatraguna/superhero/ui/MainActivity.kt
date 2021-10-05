@@ -7,7 +7,6 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.briancatraguna.superhero.MyApplication
-import com.briancatraguna.superhero.core.domain.ResultsItem
 import com.briancatraguna.superhero.databinding.ActivityMainBinding
 
 import com.jakewharton.rxbinding2.widget.RxTextView

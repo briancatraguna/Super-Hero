@@ -3,7 +3,6 @@ package com.briancatraguna.superhero.core.domain
 import androidx.lifecycle.LiveData
 import com.briancatraguna.superhero.core.data.LocalDataSource
 import com.briancatraguna.superhero.core.data.RemoteDataSource
-import com.briancatraguna.superhero.core.data.room.HeroEntity
 import javax.inject.Inject
 
 class HeroRepository: IHeroRepository {
