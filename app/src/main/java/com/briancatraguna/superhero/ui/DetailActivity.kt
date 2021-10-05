@@ -56,6 +56,7 @@ class DetailActivity : AppCompatActivity() {
         val extraHero = intent.getParcelableExtra<HeroItem>(EXTRA_HERO)
         val image = extraHero?.image.toString()
         val title = extraHero?.name.toString()
+        val desc = extraHero?.desc.toString()
         val strength = extraHero?.strength.toString()
         val durability = extraHero?.durability.toString()
         val combat = extraHero?.combat.toString()
@@ -88,7 +89,7 @@ class DetailActivity : AppCompatActivity() {
                 Toast.makeText(this,"${title} is removed from favorites!",Toast.LENGTH_SHORT).show()
             } else {
                 Thread{
-                    viewModel.insertFavoriteHero(HeroEntity(0,image.toString(),title.toString(),strength.toString(),durability.toString(),combat.toString(),power.toString(),speed.toString(),intelligence.toString()))
+                    viewModel.insertFavoriteHero(HeroEntity(0,image,title,desc,strength,durability,combat,power,speed,intelligence))
                 }.start()
                 binding.imgFavorite.setImageResource(R.drawable.ic_favorite)
                 isFavorite = true
@@ -99,10 +100,13 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initFavorite(title: String?) {
         viewModel.getFavoriteHeroes().observe(this,{heroes->
-            for (hero in heroes){
-                if (title == hero.name){
-                    binding.imgFavorite.setImageResource(R.drawable.ic_favorite)
-                    isFavorite = true
+            val listHeroes = heroes.heroItems
+            if (listHeroes != null) {
+                for (hero in listHeroes){
+                    if (title == hero.name){
+                        binding.imgFavorite.setImageResource(R.drawable.ic_favorite)
+                        isFavorite = true
+                    }
                 }
             }
         })

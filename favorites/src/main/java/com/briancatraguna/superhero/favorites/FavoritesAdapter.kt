@@ -4,33 +4,26 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.briancatraguna.superhero.core.data.room.HeroEntity
+import com.briancatraguna.superhero.core.domain.HeroItem
 import com.briancatraguna.superhero.databinding.ItemSuperheroBinding
 import com.briancatraguna.superhero.ui.DetailActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class FavoritesAdapter(val listFavorite: List<HeroEntity>): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
+class FavoritesAdapter(val listFavorite: List<HeroItem>): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemSuperheroBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(heroEntity: HeroEntity){
+        fun bind(superhero: HeroItem){
             with(binding){
                 Glide.with(itemView.context)
-                    .load(heroEntity.image)
+                    .load(superhero.image)
                     .apply(RequestOptions().override(500,500))
                     .into(image)
-                title.text = heroEntity.name
-                desc.text = ""
+                title.text = superhero.name
+                desc.text = superhero.desc
                 itemView.setOnClickListener{
                     val intent = Intent(itemView.context, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_IMAGE,heroEntity.image)
-                    intent.putExtra(DetailActivity.EXTRA_TITLE,heroEntity.name)
-                    intent.putExtra(DetailActivity.EXTRA_STRENGTH,heroEntity.strength)
-                    intent.putExtra(DetailActivity.EXTRA_DURABILITY,heroEntity.durability)
-                    intent.putExtra(DetailActivity.EXTRA_COMBAT,heroEntity.combat)
-                    intent.putExtra(DetailActivity.EXTRA_POWER,heroEntity.power)
-                    intent.putExtra(DetailActivity.EXTRA_SPEED,heroEntity.speed)
-                    intent.putExtra(DetailActivity.EXTRA_INTELLIGENCE,heroEntity.intelligence)
+                    intent.putExtra(DetailActivity.EXTRA_HERO,superhero)
                     itemView.context.startActivity(intent)
                 }
             }

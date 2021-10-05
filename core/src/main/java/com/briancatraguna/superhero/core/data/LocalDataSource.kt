@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observer
 import com.briancatraguna.superhero.core.data.room.HeroDao
 import com.briancatraguna.superhero.core.data.room.HeroEntity
+import com.briancatraguna.superhero.core.domain.DomainEntity
+import com.briancatraguna.superhero.core.domain.HeroItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -12,7 +14,7 @@ import javax.inject.Inject
 
 class LocalDataSource: ILocalDataSource {
 
-    private val _heroes = MutableLiveData<List<HeroEntity>>()
+    private val _heroes = MutableLiveData<DomainEntity>()
 
     lateinit var heroDao: HeroDao
 
@@ -21,9 +23,9 @@ class LocalDataSource: ILocalDataSource {
         this.heroDao = heroDao
     }
 
-    override fun getHeroes(): LiveData<List<HeroEntity>> {
+    override fun getHeroes(): LiveData<DomainEntity> {
         loadData()
-        val heroes: LiveData<List<HeroEntity>> = _heroes
+        val heroes: LiveData<DomainEntity> = _heroes
         return heroes
     }
 
@@ -49,7 +51,27 @@ class LocalDataSource: ILocalDataSource {
             }
 
             override fun onNext(t: List<HeroEntity>) {
-                _heroes.value = t
+                val resultsList = mutableListOf<HeroItem>()
+                for (item in t){
+                    resultsList.add(
+                        HeroItem(
+                            image = item.image,
+                            name = item.name,
+                            desc = item.desc,
+                            strength = item.strength,
+                            durability = item.durability,
+                            combat = item.combat,
+                            power = item.power,
+                            speed = item.speed,
+                            intelligence = item.intelligence
+                        )
+                    )
+                }
+                val domainEntity = DomainEntity(
+                    false,
+                    resultsList
+                )
+                _heroes.value = domainEntity
             }
 
             override fun onError(e: Throwable) {

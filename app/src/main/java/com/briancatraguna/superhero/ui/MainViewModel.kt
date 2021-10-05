@@ -21,7 +21,7 @@ class MainViewModel(private val heroUseCase: HeroUseCase): ViewModel() {
         return heroUseCase.getLoadingStatus()
     }
 
-    fun getFavoriteHeroes(): LiveData<List<HeroEntity>>{
+    fun getFavoriteHeroes(): LiveData<DomainEntity>{
         return heroUseCase.getFavoriteHeroes()
     }
 

@@ -11,7 +11,7 @@ interface IHeroRepository {
 
     fun getLoadingStatus(): LiveData<Boolean>
 
-    fun getFavoriteHeroes(): LiveData<List<HeroEntity>>
+    fun getFavoriteHeroes(): LiveData<DomainEntity>
 
     fun insertFavoriteHero(heroEntity: HeroEntity)
 

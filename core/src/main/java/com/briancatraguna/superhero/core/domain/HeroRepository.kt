@@ -30,7 +30,7 @@ class HeroRepository: IHeroRepository {
         return remoteDataSource.getLoadingStatus()
     }
 
-    override fun getFavoriteHeroes(): LiveData<List<HeroEntity>> {
+    override fun getFavoriteHeroes(): LiveData<DomainEntity> {
         return localDataSource.getHeroes()
     }
 

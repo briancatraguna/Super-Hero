@@ -25,7 +25,7 @@ class HeroInteractor: HeroUseCase {
         return heroRepository.getLoadingStatus()
     }
 
-    override fun getFavoriteHeroes(): LiveData<List<HeroEntity>> {
+    override fun getFavoriteHeroes(): LiveData<DomainEntity> {
         return heroRepository.getFavoriteHeroes()
     }
 

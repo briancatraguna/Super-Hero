@@ -38,7 +38,7 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun loadFavoritesData() {
         viewModel.getFavoriteHeroes().observe(this,{favorites ->
-            val adapter = FavoritesAdapter(favorites)
+            val adapter = FavoritesAdapter(favorites.heroItems!!)
             binding.rvFavorites.adapter = adapter
             binding.rvFavorites.layoutManager = GridLayoutManager(applicationContext,2)
         })

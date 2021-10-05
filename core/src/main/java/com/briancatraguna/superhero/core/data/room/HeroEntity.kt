@@ -16,6 +16,9 @@ data class HeroEntity(
     @ColumnInfo(name = "name")
     val name: String,
 
+    @ColumnInfo(name = "desc")
+    val desc: String,
+
     @ColumnInfo(name = "strength")
     val strength: String,
 
