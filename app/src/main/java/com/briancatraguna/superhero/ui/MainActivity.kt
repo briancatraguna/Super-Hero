@@ -1,6 +1,7 @@
 package com.briancatraguna.superhero.ui
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -36,7 +37,8 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.tvTitle.text = "Home"
         binding.toolbar.imgFavoriteToolbar.visibility = View.VISIBLE
         binding.toolbar.imgFavoriteToolbar.setOnClickListener {
-            val intent = Intent(this@MainActivity, Class.forName("com.briancatraguna.superhero.favorites.FavoriteActivity"))
+            val uri = Uri.parse("superhero://favorites")
+            val intent = Intent(Intent.ACTION_VIEW,uri)
             startActivity(intent)
         }
         val searchStream = RxTextView.textChanges(binding.searchBar)
