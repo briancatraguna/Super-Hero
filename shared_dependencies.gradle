@@ -1,4 +1,9 @@
 dependencies {
+
+    //security
+    implementation "net.zetetic:android-database-sqlcipher:4.4.0"
+    implementation "androidx.sqlite:sqlite-ktx:2.1.0"
+
     //room
     implementation 'androidx.room:room-runtime:2.3.0'
     implementation 'androidx.room:room-rxjava2:2.3.0'
