@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperHero">
         <activity
-            android:name=".favorites.FavoriteActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.DetailActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/Theme.SuperHero.NoActionBar" />
