@@ -1,3 +1,3 @@
 # Super-Hero
 
-[![briancatraguna](https://app.circleci.com/pipelines/github/briancatraguna/Super-Hero.svg?style=svg)](https://app.circleci.com/pipelines/github/briancatraguna/Super-Hero)
+[![briancatraguna](https://circleci.com/gh/briancatraguna/Super-Hero.svg?style=svg)](https://circleci.com/gh/briancatraguna/Super-Hero)
